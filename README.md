@@ -1,7 +1,6 @@
-### Kubernetes for Dummies, Literally!
+### Kubernetes for Dummies, Literally
 
-![](./images/media/image1.png){width="7.5in"
-height="1.3166666666666667in"}
+![](./images/media/image1.png)
 
 Kubernetes, an often coupled technology with Docker, was something I
 wanted to write about after receiving a lot of response on my piece
@@ -15,8 +14,7 @@ runtimes that are not addressed in this article. In this article, I'll
 describe Kubernetes, the issues it uses containers to address, and how
 you can start utilizing it right away.
 
-![](./images/media/image2.png){width="3.475in"
-height="3.316666666666667in"}
+![](./images/media/image2.png)
 
 Kubernetes successfully manages containerized apps by automating
 procedures. It is not, however, as easy to use as it first appears. A
@@ -26,8 +24,7 @@ You may learn more about Kubernetes in this post, including its
 advantages and disadvantages as well as how to implement it properly.
 Let's look more closely.
 
-![](./images/media/image3.jpeg){width="7.333333333333333in"
-height="4.125in"}
+![](./images/media/image3.jpeg)
 
 ### An Overview of Kubernetes 🆕
 
@@ -40,8 +37,7 @@ handles them in a number of ways. Due to the 8 characters between "K"
 and "s," Kubernetes is frequently abbreviated as "K8s" for convenience.
 From this point forward, I'll refer to Kubernetes as K8s.
 
-![](./images/media/image4.jpeg){width="7.5in"
-height="8.041666666666666in"}
+![](./images/media/image4.jpeg)
 
 The use of K8s further decouples networks, storage, and machines from
 their actual physical implementation. Managing several containers
@@ -55,43 +51,41 @@ K8s was created to address issues like these.
 
 ### What services does K8s provide? 🤔
 
-![](./images/media/image5.jpeg){width="5.0in"
-height="4.166666666666667in"}
+![](./images/media/image5.jpeg)
 
--   **Service discovery and load balancing :** In order to stabilize
+- **Service discovery and load balancing :** In order to stabilize
     > deployments, K8s can route network traffic to other containers and
     > locate a container using a DNS name or IP address.
 
--   **Secret and configuration management :** You may save private data
+- **Secret and configuration management :** You may save private data
     > with K8s, including passwords, OAuth tokens, and SSH keys. Without
     > having to rebuild your container images or expose secrets in your
     > stack settings, you may update these secrets and the app
     > configuration.
 
--   **Self-healing :** K8s kills containers that don't respond to your
+- **Self-healing :** K8s kills containers that don't respond to your
     > user-defined health check, restarts failing containers, and
     > doesn't advertise them to clients until they are prepared to
     > serve.
 
--   **Automatic bin packing :** To perform containerized processes, you
+- **Automatic bin packing :** To perform containerized processes, you
     > can provide K8s a cluster of nodes and specify the CPU and memory
     > requirements for each container. To optimise resource usage,
     > Kubernetes can automatically fit containers onto nodes.
 
--   **Storage orchestration :** Any storage system you choose can be
+- **Storage orchestration :** Any storage system you choose can be
     > automatically mounted, whether it is local, hosted by a cloud
     > service like AWS or GCP, or on a network storage system like NFS
     > iSCSI, Gluster, Ceph, Cinder, or Flocker.
 
--   **Automated rollouts and rollbacks :** Deployed containers can be
+- **Automated rollouts and rollbacks :** Deployed containers can be
     > defined in the desired state, and the state can be changed at a
     > regulated rate. For instance, Kubernetes can be automated to
     > generate new containers for your deployment, remove any already
     > present containers, and adopt all of the resources from the old
     > containers to the new ones.
 
-![](./images/media/image6.jpeg){width="7.5in"
-height="9.316666666666666in"}
+![](./images/media/image6.jpeg)
 
 In this article, we'll simply touch the surface of these features.
 
@@ -101,7 +95,7 @@ It's crucial to comprehend these fundamental K8s ideas. Once more,
 before moving on, you should be conversant with container services like
 [Docker](https://medium.com/@devangtomar/how-to-get-started-with-docker-b2d924cbe9bb).
 
--   **Pods :** Groups of one or more containers make up pods. Pods have
+- **Pods :** Groups of one or more containers make up pods. Pods have
     > shared network and storage resources with rules for how to operate
     > containers. They are the tiniest deployable computer units that
     > K8s can generate and operate. Pods operate as a logical unit on
@@ -110,9 +104,9 @@ before moving on, you should be conversant with container services like
     > containers can run on different machines, they are not required to
     > run on the same machine.
 
-![](./images/media/image7.png){width="7.5in" height="3.525in"}
+![](./images/media/image7.png)
 
--   **Nodes :** Physical or virtual machines that are not made by K8s
+- **Nodes :** Physical or virtual machines that are not made by K8s
     > are known as nodes. In a cluster, you would typically have
     > numerous nodes, however in a learning environment or one with
     > restricted resources, you might only have one node. Before using
@@ -122,15 +116,14 @@ before moving on, you should be conversant with container services like
     > storage, virtual networks, etc. Several pods can run on a single
     > node.
 
-![](./images/media/image8.png){width="6.666666666666667in"
-height="5.216666666666667in"}
+![](./images/media/image8.png)
 
--   **Deployments :** A group of Pods make up a deployment. A deployment
+- **Deployments :** A group of Pods make up a deployment. A deployment
     > makes sure that there are enough active Pods to support the app at
     > once. By taking a look at data like CPU use, deployments can also
     > shut down Pods that are not required.
 
-![](./images/media/image9.png){width="7.5in" height="4.325in"}
+![](./images/media/image9.png)
 
 ### Let's begin to use K8s ⭐
 
@@ -149,8 +142,7 @@ most recent versions of Minikube and Kubectl can be installed using :
 Please be aware that in order to continue with this tutorial, you must
 also have [Docker](https://docs.docker.com/engine/install/) installed.
 
-![](./images/media/image10.jpeg){width="5.791666666666667in"
-height="4.183333333333334in"}
+![](./images/media/image10.jpeg)
 
 #### 1. Install prerequisites ⚙️
 
@@ -158,8 +150,7 @@ Use docker \--version and minikube version and kubectl version We will
 deal with the notification that says the connection to localhost:8080
 was rejected later, so don't be concerned.
 
-![](./images/media/image11.png){width="7.5in"
-height="3.1666666666666665in"}
+![](./images/media/image11.png)
 
 **Note :** Skipping Minikube's version as I'm using Docker Desktop for
 k8s cluster setup.
@@ -171,7 +162,7 @@ any pods at this time, and it will say "No resources detected in default
 namespace."
 
 The smallest component of the K8s cluster is the pod, however in actual
-use, deployments are what are created. 
+use, deployments are what are created.
 
 The command to use create a **kubernetes deployment** is :
 
@@ -184,18 +175,17 @@ kubectl create deployment nginx-depl \--image=nginx
 **Note :** NGINX is an open-source webserver that is used to create
 server-side applications, for those who are unaware.
 
-Now, the output we get from running : 
+Now, the output we get from running :
 
 kubectl get deployment
 
-and 
+and
 
 kubectl get pod
 
 is as follows.
 
-![](./images/media/image12.png){width="6.308333333333334in"
-height="3.2666666666666666in"}
+![](./images/media/image12.png)
 
 Our usage of :
 
@@ -206,8 +196,7 @@ continues with the default settings. **ReplicaSet** is a layer between
 the deployment and the pod that is automatically managed by K8s
 deployment.
 
-![](./images/media/image13.jpeg){width="7.45in"
-height="4.166666666666667in"}
+![](./images/media/image13.jpeg)
 
 The **ReplicaSet** describes how to find Pods that it can acquire, how
 many Pods it should be maintaining, and the data for new Pods that
@@ -220,8 +209,7 @@ We can view the **ReplicaSet** with :
 
 kubectl get replicaset
 
-![](./images/media/image14.png){width="5.683333333333334in"
-height="2.5833333333333335in"}
+![](./images/media/image14.png)
 
 The ReplicaSet ID, c88549479, is visible after the deployment name. As
 was previously stated, the ReplicaSet is a layer that resides between
@@ -246,8 +234,7 @@ of this tutorial.
 
 **Previously**
 
-![](./images/media/image15.png){width="5.433333333333334in"
-height="4.85in"}
+![](./images/media/image15.png)
 
 Now
 
@@ -255,20 +242,17 @@ Notice the nginx image version change to 1.19 :
 
 nginx:1.19
 
-![](./images/media/image16.png){width="5.483333333333333in"
-height="6.508333333333334in"}
+![](./images/media/image16.png)
 
 When you are finished editing, type :wq for write & quit. By doing this,
 the old picture will be terminated and a new one made.
 
-![](./images/media/image17.png){width="7.141666666666667in"
-height="4.525in"}
+![](./images/media/image17.png)
 
 We can see that the old replicaset has no pods in it and a new one has
 also been formed after using the kubectl get replicasetcommand.
 
-![](./images/media/image18.jpeg){width="3.275in"
-height="4.333333333333333in"}
+![](./images/media/image18.jpeg)
 
 #### 4. Debugging Pods 🧑🏻‍💻🐛
 
@@ -282,8 +266,7 @@ logs.
 
 kubectl create deployment mongo-depl \--image=mongo
 
-![](./images/media/image19.png){width="7.5in"
-height="4.516666666666667in"}
+![](./images/media/image19.png)
 
 Now executing kubectl logs mongo-depl-8fbd868c-gfgwmwill produce concise
 logs and kubectl describe pod mongo-depl-8fbd868c-gfgwmwill produce a
@@ -293,7 +276,7 @@ If something goes wrong, logging will assist with debugging, and
 description creates something a little more understandable.
 
 Another useful command to see what is going on inside the Pod is *(-it
-stands for interactive terminal) *:
+stands for interactive terminal)*:
 
 kubectl exec -it \<Pod Name\> \--bin/bash
 
@@ -304,8 +287,7 @@ kubectl exec -it mongo-depl-8fbd868c-gfgwm \--bin/bash
 and if we echo inside and do all sort of commands inside it. To exit
 this, simply type exit.
 
-![](./images/media/image20.png){width="7.5in"
-height="2.2416666666666667in"}
+![](./images/media/image20.png)
 
 #### 5. Deleting deployments ❌☠️
 
@@ -337,8 +319,7 @@ The last command, however, is probably not something you want to use
 because it would destroy items from the kube-system namespace, rendering
 your cluster useless.
 
-![](./images/media/image21.jpeg){width="5.55in"
-height="4.166666666666667in"}
+![](./images/media/image21.jpeg)
 
 With the exception of kube-system, this command will erase all
 namespaces, which may be useful:
@@ -404,8 +385,7 @@ Next, paste the following settings into the file :
 
 **- containerPort: 80**
 
-![](./images/media/image22.png){width="5.05in"
-height="5.058333333333334in"}
+![](./images/media/image22.png)
 
 The design for the Pods can be found under "template." The first
 specification tag is for deployments, while the second specification tag
@@ -423,10 +403,9 @@ instead of creating one replica, the Deployment was altered in the
 configuration file to make four.
 
 We receive the following output after executing kubectl get pod and
-kubectl get deployment : 
+kubectl get deployment :
 
-![](./images/media/image23.png){width="6.766666666666667in"
-height="4.216666666666667in"}
+![](./images/media/image23.png)
 
 As you can see, K8s is capable of predicting when to create or update a
 deployment.
@@ -442,8 +421,7 @@ how to use configuration files for Deployments and debug Pods. It should
 be noted that any other K8s component, including services and volumes,
 can also be managed via kubectl.
 
-![](./images/media/image24.jpeg){width="4.166666666666667in"
-height="5.425in"}
+![](./images/media/image24.jpeg)
 
 ### Final thoughts 💭
 
@@ -456,8 +434,7 @@ Please let me know if I can go into more detail about this topic in the
 future, if you have any questions, or if I missed anything. Please leave
 me a comment; I truly appreciate it!
 
-![](./images/media/image25.jpeg){width="6.4in"
-height="2.6666666666666665in"}\\\\\\
+![](./images/media/image25.jpeg)
 
 ### GitHub URL for this article 💻
 
