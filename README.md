@@ -14,6 +14,9 @@ runtimes that are not addressed in this article. In this article, I'll
 describe Kubernetes, the issues it uses containers to address, and how
 you can start utilizing it right away.
 
+<br>
+<br>
+
 ![](./images/media/image2.png)
 
 Kubernetes successfully manages containerized apps by automating
@@ -24,7 +27,11 @@ You may learn more about Kubernetes in this post, including its
 advantages and disadvantages as well as how to implement it properly.
 Let's look more closely.
 
+<br>
+
 ![](./images/media/image3.jpeg)
+
+<br>
 
 ### An Overview of Kubernetes 🆕
 
@@ -37,7 +44,11 @@ handles them in a number of ways. Due to the 8 characters between "K"
 and "s," Kubernetes is frequently abbreviated as "K8s" for convenience.
 From this point forward, I'll refer to Kubernetes as K8s.
 
+<br>
+
 ![](./images/media/image4.jpeg)
+
+<br>
 
 The use of K8s further decouples networks, storage, and machines from
 their actual physical implementation. Managing several containers
@@ -51,7 +62,11 @@ K8s was created to address issues like these.
 
 ### What services does K8s provide? 🤔
 
+<br>
+
 ![](./images/media/image5.jpeg)
+
+<br>
 
 - **Service discovery and load balancing :** In order to stabilize
     > deployments, K8s can route network traffic to other containers and
@@ -85,6 +100,8 @@ K8s was created to address issues like these.
     > present containers, and adopt all of the resources from the old
     > containers to the new ones.
 
+<br>
+
 ![](./images/media/image6.jpeg)
 
 In this article, we'll simply touch the surface of these features.
@@ -103,8 +120,11 @@ before moving on, you should be conversant with container services like
     > can communicate via localhost. Pods can share storage, but since
     > containers can run on different machines, they are not required to
     > run on the same machine.
+<br>
 
 ![](./images/media/image7.png)
+
+<br>
 
 - **Nodes :** Physical or virtual machines that are not made by K8s
     > are known as nodes. In a cluster, you would typically have
@@ -116,14 +136,22 @@ before moving on, you should be conversant with container services like
     > storage, virtual networks, etc. Several pods can run on a single
     > node.
 
+<br>
+
 ![](./images/media/image8.png)
+
+<br>
 
 - **Deployments :** A group of Pods make up a deployment. A deployment
     > makes sure that there are enough active Pods to support the app at
     > once. By taking a look at data like CPU use, deployments can also
     > shut down Pods that are not required.
 
+<br>
+
 ![](./images/media/image9.png)
+
+<br>
 
 ### Let's begin to use K8s ⭐
 
@@ -142,15 +170,23 @@ most recent versions of Minikube and Kubectl can be installed using :
 Please be aware that in order to continue with this tutorial, you must
 also have [Docker](https://docs.docker.com/engine/install/) installed.
 
+<br>
+
 ![](./images/media/image10.jpeg)
+
+<br>
 
 #### 1. Install prerequisites ⚙️
 
-Use docker \--version and minikube version and kubectl version We will
+Use `docker --version` and `minikube version` and `kubectl version` We will
 deal with the notification that says the connection to localhost:8080
 was rejected later, so don't be concerned.
 
+<br>
+
 ![](./images/media/image11.png)
+
+<br>
 
 **Note :** Skipping Minikube's version as I'm using Docker Desktop for
 k8s cluster setup.
@@ -166,22 +202,22 @@ use, deployments are what are created.
 
 The command to use create a **kubernetes deployment** is :
 
-kubectl create deployment \<NAME\> \--image=\<image\>
+`kubectl create deployment <NAME\> --image=<image>`
 
 Now we will create a nginx deployment for this specific deployment:
 
-kubectl create deployment nginx-depl \--image=nginx
+`kubectl create deployment nginx-depl --image=nginx`
 
 **Note :** NGINX is an open-source webserver that is used to create
 server-side applications, for those who are unaware.
 
 Now, the output we get from running :
 
-kubectl get deployment
+`kubectl get deployment`
 
 and
 
-kubectl get pod
+`kubectl get pod`
 
 is as follows.
 
@@ -189,7 +225,7 @@ is as follows.
 
 Our usage of :
 
-kubectl create deployment \<NAME\> \--image=\<image\>
+`kubectl create deployment <NAME> --image=<image>`
 
 This is the simplest method of creating a deployment. The deployment
 continues with the default settings. **ReplicaSet** is a layer between
@@ -207,7 +243,7 @@ when necessary.
 
 We can view the **ReplicaSet** with :
 
-kubectl get replicaset
+`kubectl get replicaset`
 
 ![](./images/media/image14.png)
 
@@ -224,7 +260,7 @@ which manages all the replicas of the Pod.
 
 Change your deployment utilising:
 
-kubectl edit deployment nginx-depl
+`kubectl edit deployment nginx-depl`
 
 The automatically created configuration file will be displayed. Rest
 assured that you are not required to comprehend every detail of the
@@ -240,7 +276,7 @@ Now
 
 Notice the nginx image version change to 1.19 :
 
-nginx:1.19
+`nginx:1.19`
 
 ![](./images/media/image16.png)
 
@@ -258,13 +294,13 @@ also been formed after using the kubectl get replicasetcommand.
 
 Another useful command is :
 
-kubectl logs \<Pod Name\>
+`kubectl logs <Pod Name>`
 
 Because nginx did not log anything, you will receive nothing if you run
 this on it. We can utilise MongoDB, a document database, to show off
 logs.
 
-kubectl create deployment mongo-depl \--image=mongo
+`kubectl create deployment mongo-depl --image=mongo`
 
 ![](./images/media/image19.png)
 
@@ -278,11 +314,11 @@ description creates something a little more understandable.
 Another useful command to see what is going on inside the Pod is *(-it
 stands for interactive terminal)*:
 
-kubectl exec -it \<Pod Name\> \--bin/bash
+`kubectl exec -it <Pod Name> --bin/bash`
 
 Consider how we might use this to access our MongoDB pod:
 
-kubectl exec -it mongo-depl-8fbd868c-gfgwm \--bin/bash
+`kubectl exec -it mongo-depl-8fbd868c-gfgwm --bin/bash`
 
 and if we echo inside and do all sort of commands inside it. To exit
 this, simply type exit.
@@ -295,25 +331,25 @@ All of the Pods contained in a Deployment are deleted when the
 Deployment is deleted. To remove, as an illustration, the MongoDB
 Deployment type :
 
-kubectl delete deployment mongo-depl
+`kubectl delete deployment mongo-depl`
 
 **WARNING**! : You should be careful not to delete anything significant
 or on production clusters while using the following instructions.
 
 With this command, all the pods in a single namespace can be deleted :
 
-kubectl delete \--all pods \--namespace=foo
+`kubectl delete --all pods --namespace=foo`
 
 You can also delete every deployment in a namespace, which will also
 destroy every pod associated with that namespace's deployments.
 
-kubectl delete \--all deployments \--namespace=foo
+`kubectl delete --all deployments --namespace=foo`
 
 With this command, you can delete all namespaces and all objects within
 each namespace (but not unnamespaced objects like nodes and some
 events) :
 
-kubectl delete \--all namespaces
+`kubectl delete --all namespaces`
 
 The last command, however, is probably not something you want to use
 because it would destroy items from the kube-system namespace, rendering
@@ -324,14 +360,16 @@ your cluster useless.
 With the exception of kube-system, this command will erase all
 namespaces, which may be useful:
 
-for each in \$(kubectl get ns -o
-jsonpath=\"{.items\[\*\].metadata.name}\" \| grep -v kube-system);
+```bash
+for each in $(kubectl get ns -o
+jsonpath="{.items[*].metadata.name}" | grep -v kube-system);
 
 do
 
-kubectl delete ns \$each
+`kubectl delete ns $each`
 
 done
+```
 
 #### 6. Apply configuration files 📂
 
@@ -339,51 +377,37 @@ We must first generate a configuration file before we can apply it. Make
 a configuration file for the nginx deployment and save it in a place you
 can access again.
 
+```bash
 touch nginx-deployment.yaml
+```
 
 Next, paste the following settings into the file :
 
-**apiVersion: apps/v1**
+```yml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp
+  labels:
+    app: nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:1.19
+          ports:
+            - containerPort: 80
+```
 
-**kind: Deployment**
-
-**metadata:**
-
-**name: myapp**
-
-**labels:**
-
-**app: nginx**
-
-**spec:**
-
-**replicas: 1**
-
-**selector:**
-
-**matchLabels:**
-
-**app: nginx**
-
-**template:**
-
-**metadata:**
-
-**labels:**
-
-**app: nginx**
-
-**spec:**
-
-**containers:**
-
-**- name: nginx**
-
-**image: nginx:1.19**
-
-**ports:**
-
-**- containerPort: 80**
+<br>
 
 ![](./images/media/image22.png)
 
@@ -396,7 +420,7 @@ container inside the pod with an NGINX image to port 80.
 
 When we use :
 
-kubectl apply -f nginx-deployment.yaml
+`kubectl apply -f nginx-deployment.yaml`
 
 It utilises the settings to build a deployment. Let's imagine that
 instead of creating one replica, the Deployment was altered in the
