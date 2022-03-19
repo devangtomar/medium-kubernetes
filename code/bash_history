@@ -1,0 +1,20 @@
+kubectl create deployment nginx-depl --image=nginx
+kubectl get deployment
+kubectl get pod
+kubectl get replicaset
+kubectl edit deployment nginx-depl
+kubectl create deployment mongo-depl --image=mongo
+kubectl exec -it <Pod Name> --bin/bash
+kubectl exec -it mongo-depl-8fbd868c-gfgwm --bin/bash
+kubectl delete deployment mongo-depl
+kubectl delete --all pods --namespace=foo
+kubectl delete --all deployments --namespace=foo
+kubectl delete --all namespaces
+
+for each in $(kubectl get ns -o jsonpath="{.items[*].metadata.name}" | grep -v kube-system);
+do
+kubectl delete ns $each
+done
+
+touch nginx-deployment.yaml
+kubectl apply -f nginx-deployment.yaml
