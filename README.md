@@ -221,7 +221,11 @@ and
 
 is as follows.
 
+<br>
+
 ![](./images/media/image12.png)
+
+<br>
 
 Our usage of :
 
@@ -232,7 +236,11 @@ continues with the default settings. **ReplicaSet** is a layer between
 the deployment and the pod that is automatically managed by K8s
 deployment.
 
+<br>
+
 ![](./images/media/image13.jpeg)
+
+<br>
 
 The **ReplicaSet** describes how to find Pods that it can acquire, how
 many Pods it should be maintaining, and the data for new Pods that
@@ -245,7 +253,11 @@ We can view the **ReplicaSet** with :
 
 `kubectl get replicaset`
 
+<br>
+
 ![](./images/media/image14.png)
+
+<br>
 
 The ReplicaSet ID, c88549479, is visible after the deployment name. As
 was previously stated, the ReplicaSet is a layer that resides between
@@ -270,7 +282,11 @@ of this tutorial.
 
 **Previously**
 
+<br>
+
 ![](./images/media/image15.png)
+
+<br>
 
 Now
 
@@ -278,17 +294,29 @@ Notice the nginx image version change to 1.19 :
 
 `nginx:1.19`
 
+<br>
+
 ![](./images/media/image16.png)
+
+<br>
 
 When you are finished editing, type :wq for write & quit. By doing this,
 the old picture will be terminated and a new one made.
 
+<br>
+
 ![](./images/media/image17.png)
+
+<br>
 
 We can see that the old replicaset has no pods in it and a new one has
 also been formed after using the kubectl get replicasetcommand.
 
+<br>
+
 ![](./images/media/image18.jpeg)
+
+<br>
 
 #### 4. Debugging Pods 🧑🏻‍💻🐛
 
@@ -302,7 +330,11 @@ logs.
 
 `kubectl create deployment mongo-depl --image=mongo`
 
+<br>
+
 ![](./images/media/image19.png)
+
+<br>
 
 Now executing kubectl logs mongo-depl-8fbd868c-gfgwmwill produce concise
 logs and kubectl describe pod mongo-depl-8fbd868c-gfgwmwill produce a
@@ -323,7 +355,11 @@ Consider how we might use this to access our MongoDB pod:
 and if we echo inside and do all sort of commands inside it. To exit
 this, simply type exit.
 
+<br>
+
 ![](./images/media/image20.png)
+
+<br>
 
 #### 5. Deleting deployments ❌☠️
 
@@ -355,7 +391,11 @@ The last command, however, is probably not something you want to use
 because it would destroy items from the kube-system namespace, rendering
 your cluster useless.
 
+<br>
+
 ![](./images/media/image21.jpeg)
+
+<br>
 
 With the exception of kube-system, this command will erase all
 namespaces, which may be useful:
@@ -411,6 +451,8 @@ spec:
 
 ![](./images/media/image22.png)
 
+<br>
+
 The design for the Pods can be found under "template." The first
 specification tag is for deployments, while the second specification tag
 is for pods.
@@ -429,7 +471,11 @@ configuration file to make four.
 We receive the following output after executing kubectl get pod and
 kubectl get deployment :
 
+<br>
+
 ![](./images/media/image23.png)
+
+<br>
 
 As you can see, K8s is capable of predicting when to create or update a
 deployment.
@@ -445,7 +491,11 @@ how to use configuration files for Deployments and debug Pods. It should
 be noted that any other K8s component, including services and volumes,
 can also be managed via kubectl.
 
+<br>
+
 ![](./images/media/image24.jpeg)
+
+<br>
 
 ### Final thoughts 💭
 
@@ -458,7 +508,11 @@ Please let me know if I can go into more detail about this topic in the
 future, if you have any questions, or if I missed anything. Please leave
 me a comment; I truly appreciate it!
 
+<br>
+
 ![](./images/media/image25.jpeg)
+
+<br>
 
 ### GitHub URL for this article 💻
 
